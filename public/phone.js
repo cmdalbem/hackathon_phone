@@ -4,6 +4,6 @@ var Gpio = require('onoff').Gpio,
 
 module.exports = {
 	ring : function() {
-		arduino.writeSync('high');
+		arduino.write('high');
 	}
 }
