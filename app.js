@@ -3,7 +3,10 @@ var express = require('express'),
 //	router = express.Router(),
 	q = require('q'),
 	repo = require('./public/repository.js'), 
+	phoneAudio = require('./audio/syscall.js'), 
 	phone = require('./public/phone.js');
+
+	
 app.use(express.static('public'));
 
 
@@ -29,8 +32,14 @@ app.get('/quotes',function(req, res) {
 });
 
 app.get('/phone/ring', function(req, res) {
-	phone.ring();
+	phoneAudio.play('bell.mp3');
 	console.log("call phone");
+	res.status(200).end();
+});
+
+app.get('/phone/send/:id', function(req, res) {
+	phone.sendQuote(req.params.id);
+	console.log("phone send id:"+req.params.id);
 	res.status(200).end();
 });
 
