@@ -17,15 +17,15 @@
     "url": "https://github.com/cmdalbem/hackathon_phone/issues"
   },
   "dependencies": {
-    "bootstrap": "^3.3.5",
-    "ejs": "^2.3.4",
-    "express": "~4.13.3",
+    "bootstrap": "3.3.5",
+    "ejs": "2.3.4",
+    "express": "4.13.3",
     "fs": "0.0.2",
-    "lame": "^1.2.3",
+    "lame": "1.2.3",
     "node-slack": "0.0.7",
-    "nodemon": "~1.8.0",
-    "onoff": "^1.0.3",
-    "q": "~1.4.1",
-    "speaker": "^0.2.6"
+    "nodemon": "1.8.0",
+    "onoff": "1.0.3",
+    "q": "1.4.1",
+    "speaker": "0.2.6"
   }
 }
