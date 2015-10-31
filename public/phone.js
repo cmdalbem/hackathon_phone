@@ -13,8 +13,8 @@ module.exports = {
 		arduino_14.write(1);
 		arduino_16.write(1);
 
-		
-		piblaster.setPwm(14, 1pi); // 100% brightness
+
+		piblaster.setPwm(14, 1); // 100% brightness
 		setTimeout(function() { piblaster.setPwm(16, 1); }, 3000);
 		 //# 20% brightness
 
