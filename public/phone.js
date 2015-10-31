@@ -5,15 +5,6 @@ var Gpio = require('onoff').Gpio,
 
 var piblaster = require('pi-blaster.js');
 
-piblaster.setPwm(14, 1 ); // 100% brightness
-piblaster.setPwm(16, 1); //# 20% brightness
-
-
-
-arduino_4.watch(function(err, value) {
-  console.log("input value is = "+value);
-});
-
 module.exports = {
 	ring : function() {
 		arduino_14.writeSync(1);
@@ -21,5 +12,17 @@ module.exports = {
 
 		arduino_14.write(1);
 		arduino_16.write(1);
+
+		
+		piblaster.setPwm(14, 1pi); // 100% brightness
+		setTimeout(function() { piblaster.setPwm(16, 1); }, 3000);
+		 //# 20% brightness
+
+
+
+		arduino_4.watch(function(err, value) {
+		  console.log("input value is = "+value);
+		});
+
 	}
 }
