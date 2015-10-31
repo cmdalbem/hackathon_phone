@@ -2,23 +2,29 @@ var express = require('express'),
 	app = express(),
 //	router = express.Router(),
 	q = require('q'),
-	repo = require('./repository.js');
+	repo = require('./repository.js'); 
 
 
+// app.js
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
+
+ 
 app.get('/', function(req, res) {
-		res.end("API listing:  /quotes => List all  :: /quote/:id  => get quote");
-	});
+	// res.end("API listing:  /quotes => List all  :: /quote/:id  => get quote");
+	res.render("index", {repo: repo.getAll()});
+});
 
-app.get('/quote/:id',function(req, res) {
-		var quote = repo.getQuote(req.params.id);
-		res.status(200).send(quote);
-	});
+app.get('/quote/:id',function(req, res) {   
+	var quote = repo.getQuote(req.params.id);
+	res.status(200).send(quote);
+});
 
 app.get('/quotes',function(req, res) {
-		var quotes = repo.getAll();
-		res.status(200).send(quotes);
-	});
+	var quotes = repo.getAll();
+	res.status(200).send(quotes);
+});
 
 
 
