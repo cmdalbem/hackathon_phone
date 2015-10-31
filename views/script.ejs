@@ -4,31 +4,50 @@
 
 		console.log("JQuery loaded!");
 
+		// Initializations
+		///////////////
+
+		var meSpeakOpt = {
+			// "amplitude": 0, // How loud the voice will be (default: 100)
+			// "pitch": 0, //     The voice pitch (default: 50)
+			"speed": 140, //     The speed at which to talk (words per minute) (default: 175)
+			// "voice": 0, //     Which voice to use (default: last voice loaded or defaultVoice, see below)
+			"wordgap": 3, //   Additional gap between words in 10 ms units (default: 0)
+			// "variant": 0, //   One of the variants to be found in the eSpeak-directory "~/espeak-data/voices/!v"Variants add some effects to the normally plain voice, e.g. notably a female tone. Valid values are: "f1", "f2", "f3", "f4", "f5" for female voices "m1", "m2", "m3", "m4", "m5", "m6, "m7" for male voices "croak", "klatt", "klatt2", "klatt3", "whisper", "whisperf" for other effects. (Using eSpeak, these would be appended to the "-v" option by "+" and the value.) Note: Try "f2" or "f5" for a female voice.
+			"linebreak": 2, // (Number) Line-break length, default value: 0.
+			// "capitals": 0, //  (Number) Indicate words which begin with capital letters. 1: Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals. 2: Speak the word "capital" before a word which begins with a capital letter. Other values: Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)
+			// "punct": 0, //     (Boolean or String) Speaks the names of punctuation characters when they are encountered in the text. If a string of characters is supplied, then only those listed punctuation characters are spoken, eg. { "punct": ".,;?" }.
+			// "nostop": 0, //    (Boolean) Removes the end-of-sentence pause which normally occurs at the end of the text.
+			// "utf16": 0, //     (Boolean) Indicates that the input is UTF-16, default: UTF-8.
+			// "ssml": 0, //      (Boolean) Indicates that the text contains SSML (Speech Synthesis Markup Language) tags or other XML tags. (A small set of HTML is supported too.)
+		};
+
+		var carouselTemplate = Handlebars.compile($("#carouselTemplate").html());
+
 		// Init voice synthethiser
 		meSpeak.loadConfig("lib/mespeak/mespeak_config.json");
 		meSpeak.loadVoice('lib/mespeak/voices/en/en-us.json');  
 
+		// Initialize carousel with quotes
+		$("#carousel").html( carouselTemplate({quotes: quotes}) );
+ 		$($("#carousel .carousel-inner .item")[0]).addClass("active")
+
+		// Callbacks
+		///////////////
+
 		$("#sendButton").on("click", "", function() {
 			var msg = $("#msg").val();
-			console.log(msg);
+			alert("Mock send: " + msg)
 		});
 
 		$("#speakButton").on("click", "", function() {
 			var msg = $("#msg").val();
-			meSpeak.speak(msg, {
-				// "amplitude": 0, // How loud the voice will be (default: 100)
-				// "pitch": 0, //     The voice pitch (default: 50)
-				"speed": 140, //     The speed at which to talk (words per minute) (default: 175)
-				// "voice": 0, //     Which voice to use (default: last voice loaded or defaultVoice, see below)
-				"wordgap": 3, //   Additional gap between words in 10 ms units (default: 0)
-				// "variant": 0, //   One of the variants to be found in the eSpeak-directory "~/espeak-data/voices/!v"Variants add some effects to the normally plain voice, e.g. notably a female tone. Valid values are: "f1", "f2", "f3", "f4", "f5" for female voices "m1", "m2", "m3", "m4", "m5", "m6, "m7" for male voices "croak", "klatt", "klatt2", "klatt3", "whisper", "whisperf" for other effects. (Using eSpeak, these would be appended to the "-v" option by "+" and the value.) Note: Try "f2" or "f5" for a female voice.
-				"linebreak": 2, // (Number) Line-break length, default value: 0.
-				// "capitals": 0, //  (Number) Indicate words which begin with capital letters. 1: Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals. 2: Speak the word "capital" before a word which begins with a capital letter. Other values: Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)
-				// "punct": 0, //     (Boolean or String) Speaks the names of punctuation characters when they are encountered in the text. If a string of characters is supplied, then only those listed punctuation characters are spoken, eg. { "punct": ".,;?" }.
-				// "nostop": 0, //    (Boolean) Removes the end-of-sentence pause which normally occurs at the end of the text.
-				// "utf16": 0, //     (Boolean) Indicates that the input is UTF-16, default: UTF-8.
-				// "ssml": 0, //      (Boolean) Indicates that the text contains SSML (Speech Synthesis Markup Language) tags or other XML tags. (A small set of HTML is supported too.)
-			});
+			meSpeak.speak(msg, meSpeakOpt);
+		});
+
+		$(".speakCarouselButton").on("click", "", function() {
+			var msg = $(this).prev().html();
+			meSpeak.speak(msg, meSpeakOpt);
 		});
 
 	})

@@ -2,7 +2,7 @@ var express = require('express'),
 	app = express(),
 //	router = express.Router(),
 	q = require('q'),
-	repo = require('./repository.js'); 
+	repo = require('./public/repository.js'); 
 
 app.use(express.static('public'));
 
@@ -15,7 +15,7 @@ app.set('view engine', 'html');
  
 app.get('/', function(req, res) {
 	// res.end("API listing:  /quotes => List all  :: /quote/:id  => get quote");
-	res.render("index", {repo: repo.getAll()});
+	res.render("index");
 });
 
 app.get('/quote/:id',function(req, res) {   

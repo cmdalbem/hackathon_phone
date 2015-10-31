@@ -1,8 +1,12 @@
 // Repositório de quotes
 
 var quotes = [
-	"Frase 1", "Frase 2", "Frase 3", "Frase 4", "Frase 5",
-];
+	{imgPath: "", text: "Frase 1"},
+	{imgPath: "", text: "Frase 2"},
+	{imgPath: "", text: "Frase 3"},
+	{imgPath: "", text: "Frase 4"},
+	{imgPath: "", text: "Frase 5"},
+]; 
 
 
 module.exports = {
