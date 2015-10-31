@@ -4,6 +4,8 @@ var express = require('express'),
 	q = require('q'),
 	repo = require('./repository.js'); 
 
+app.use(express.static('public'));
+
 
 // app.js
 app.engine('html', require('ejs').renderFile);
