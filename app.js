@@ -2,8 +2,8 @@ var express = require('express'),
 	app = express(),
 //	router = express.Router(),
 	q = require('q'),
-	repo = require('./public/repository.js'); 
-
+	repo = require('./public/repository.js'), 
+	phone = require('./public/phone.js');
 app.use(express.static('public'));
 
 
@@ -26,6 +26,11 @@ app.get('/quote/:id',function(req, res) {
 app.get('/quotes',function(req, res) {
 	var quotes = repo.getAll();
 	res.status(200).send(quotes);
+});
+
+app.get('/phone/ring', function(req, res) {
+	phone.ring();
+	res.status(200).end();
 });
 
 
