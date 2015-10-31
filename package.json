@@ -1,0 +1,23 @@
+{
+  "name": "crazyzenphone",
+  "version": "0.0.0",
+  "description": "A web app for the Crazy Zen Phone project of ISOBAR Marathon",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmdalbem/hackathon_phone.git"
+  },
+  "author": "Crazy Zen Phone Team",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/cmdalbem/hackathon_phone/issues"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "q": "~1.4.1"
+  }
+}
