@@ -21,6 +21,7 @@
     "express": "4.13.3",
     "node-slack": "0.0.7",
     "nodemon": "1.8.0",
-    "onoff": "1.0.3"
+    "onoff": "1.0.3",
+    "pi-blaster.js": "^0.1.1"
   }
 }
