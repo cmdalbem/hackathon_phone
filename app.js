@@ -6,7 +6,7 @@ var express = require('express'),
 	phoneAudio = require('./audio/syscall.js'), 
 	phone = require('./public/phone.js');
 
-	
+
 app.use(express.static('public'));
 
 
@@ -32,7 +32,7 @@ app.get('/quotes',function(req, res) {
 });
 
 app.get('/phone/ring', function(req, res) {
-	phoneAudio.play('bell.mp3');
+	phoneAudio.play('audio/bell.mp3');
 	console.log("call phone");
 	res.status(200).end();
 });
