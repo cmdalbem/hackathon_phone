@@ -14,12 +14,9 @@ module.exports = {
 		arduino_16.write(1);
 
 
-		piblaster.setPwm(14, 1); // 100% brightness
-		setTimeout(function() { piblaster.setPwm(16, 1); }, 3000);
-		 //# 20% brightness
-
-
-
+		piblaster.setPwm(0, 1); // 100% brightness
+		piblaster.setPwm(4, 1); // 100% brightness
+		
 		arduino_4.watch(function(err, value) {
 		  console.log("input value is = "+value);
 		});
