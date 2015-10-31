@@ -3,7 +3,7 @@ var Gpio = require('onoff').Gpio,
 	arduino_14 = new Gpio(14, 'out'),
 	arduino_16 = new Gpio(16, 'out');
 
-button.watch(function(err, value) {
+arduino_4.watch(function(err, value) {
   console.log("input value is = "+value);
 });
 
