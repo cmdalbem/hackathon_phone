@@ -1,10 +1,28 @@
 var express = require('express'),
 	app = express(),
-	router = express.Router(),
-	q = require('q');
+//	router = express.Router(),
+	q = require('q'),
+	repo = require('./repository.js');
 
 
-app.use('/', router);
+
+app.get('/', function(req, res) {
+		res.end("API listing:  /quotes => List all  :: /quote/:id  => get quote");
+	});
+
+app.get('/quote/:id',function(req, res) {
+		var quote = repo.getQuote(req.params.id);
+		res.status(200).send(quote);
+	});
+
+app.get('/quotes',function(req, res) {
+		var quotes = repo.getAll();
+		res.status(200).send(quotes);
+	});
+
+
+
+
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
@@ -12,14 +30,3 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
-
-router.route('/home')
-	.get(function(req, res) {
-		res.end("Welcome Home.");
-	})
-	.post( function(req, res) {
-		res.status(500).end("Don't mess with your home dude.");
-	});
-
-
