@@ -17,7 +17,10 @@
     "url": "https://github.com/cmdalbem/hackathon_phone/issues"
   },
   "dependencies": {
+    "bootstrap": "^3.3.5",
+    "ejs": "^2.3.4",
     "express": "~4.13.3",
+    "node-slack": "0.0.7",
     "q": "~1.4.1"
   }
 }
