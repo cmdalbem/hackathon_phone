@@ -30,6 +30,7 @@ app.get('/quotes',function(req, res) {
 
 app.get('/phone/ring', function(req, res) {
 	phone.ring();
+	console.log("call phone");
 	res.status(200).end();
 });
 
