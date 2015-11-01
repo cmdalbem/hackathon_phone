@@ -78,6 +78,7 @@ module.exports = {
 	},
 	ring : function(quote, data) {
 		console.log("writing RING to arduino");
+		quoteId = quote;
 		serialPort.write(
 			new Buffer("RING",'ascii'),
 			function(err, results) {
