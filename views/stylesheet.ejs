@@ -12,18 +12,52 @@ body {
 
 .btn_zen{
   position: absolute;
-  top:450px;
-  left:250px;
+  bottom: 30px;
+  right: 30px;
 }
 
 .logo_zen{
   position: absolute;
-  top:20px;
-  left:20px;
+  top: 20px;
+  left: 20px;
 }
 
-.slick-slide img {
+.slick-slider,
+.slick-list,
+.slick-track {
+	height: 100%;
+}
+
+.carousel-card img {
 	width: 100% !important;
+}
+
+.carousel-card p {
+	padding: 30% 20%;
+	font-size: 1.2em;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+}
+
+.carousel-card p:before {
+    content: "“";
+    display: block;
+    font-family: Georgia;
+    margin-bottom: 1%;
+    font-size: 4em;
+    font-weight: normal;
+    line-height: 10px;
+    margin-left: -20px;
+}
+
+.carousel-card p span {
+	font-weight: normal;
+	padding-top: 7%;
+	display: block;
+}
+
+.carousel-card {
+	background-size: cover !important; 
 }
 
 .icon_heart{

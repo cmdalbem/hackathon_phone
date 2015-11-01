@@ -4,12 +4,7 @@
 	<% include header %>
 
   <body> 
-    <div class="carousel" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "speed": 250, "arrows":false}'> 
-      <div class="carousel-card"><img src="images/card1.png"/></div>
-      <div class="carousel-card"><img src="images/card2.png"/></div>
-      <div class="carousel-card"><img src="images/card3.png"/></div>
-      <div class="carousel-card"><img src="images/card4.png"/></div>
-    </div>
+    <div class="carousel" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "speed": 250, "arrows":false}'> </div>
 
     <div id="sendButton" class='btn_zen'><img src="images/btn_zen.png" width="80" height="80"/></div>
 
@@ -20,6 +15,20 @@
     <div class='icon_arrow'><img src="images/icon_arrow.png"  width="40%" height="40%"/></div>
 
 
+    <script id="carouselTemplate" type="text/x-handlebars-template">
+			{{#each quotes}}
+			<div class="carousel-card" style="background: url('images/bgs/0{{index}}.png')">
+	      	<p>
+	      		{{text}}
+	      		<span>{{author}}</span>
+	      	</p>
+	      </div>
+	    </div>
+	    {{/each}}
+		</script>
+
+		<% include footer %>
+		
 		<% include script %>
     
     <!-- Built with love using Web Starter Kit -->
