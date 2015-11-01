@@ -83,9 +83,9 @@ module.exports = {
 		quoteId = quote;
 		serialPort.write(
 			new Buffer("RING",'ascii'),
-			function(err, results) {
-				console.log('err ' + err);
-				console.log('results ' + results);
+			function(err) {
+				if(err)
+					console.log('err ' + err);
 			}
 		);	
 	}
