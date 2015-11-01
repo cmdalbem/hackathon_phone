@@ -5,9 +5,9 @@ module.exports = {
 		child.exec('mpg321 '+filename, function(err, stdout, stderr) {
 			console.log(err);	
 		});
-		child.exec('afplay '+filename, function(err, stdout, stderr) {
+		/*child.exec('afplay '+filename, function(err, stdout, stderr) {
 			console.log(err);	
-		});
+		});*/
 	},
 	playWav : function(filename) { 
 		child.exec('aplay '+filename, function(err, stdout, stderr) {
