@@ -1,5 +1,7 @@
 var phoneAudio = require('../audio/syscall.js');
 
+var repo = require('./repository.js');
+
 var SerialPort = require("serialport").SerialPort;
 
 // var serialPort = new SerialPort("/dev/ttyACM0", {
@@ -23,6 +25,10 @@ if (serialPort) {
 
 			var size = data.length;
 
+			// var quote = repo.getRandomQuote();
+			// console.log(quote.text)
+			// phoneAudio.playMp3('audio/'+quote.audioPath);
+
 			for(var i=0; i<size; i++) {
 				var character = String.fromCharCode(data[i]);
 				if (character != ".") {
@@ -33,7 +39,8 @@ if (serialPort) {
 					if (buffer && buffer.length>0) {
 						if (buffer=="P") {
 							console.log('PICKED UP');
-							// phoneAudio.playMp3('audio/bell.mp3');
+							var quote = repo.getQuote(0);
+							phoneAudio.playMp3('audio/'+quote.audioPath);
 						}
 						else if (buffer=="I") {
 							console.log("IDLE");
@@ -48,10 +55,7 @@ if (serialPort) {
 			
 		});
 
-		// serialPort.write(new Buffer('4','ascii'), function(err, results) {
-		// 	console.log('err ' + err);
-		// 	console.log('results ' + results);
-		// }); 
+		
 	});
 }
 
@@ -61,5 +65,15 @@ module.exports = {
 			console.log('err ' + err);
 			console.log('results ' + results);
 		});	
+	},
+	ring : function(data) {
+		console.log("writing RING to arduino");
+		serialPort.write(
+			new Buffer("RING",'ascii'),
+			function(err, results) {
+				console.log('err ' + err);
+				console.log('results ' + results);
+			}
+		);	
 	}
 }
