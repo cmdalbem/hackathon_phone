@@ -35,9 +35,20 @@
 		// Callbacks
 		///////////////
 
-		$("#sendButton").on("click", "", function() {
+		$("#sendButton").on("click", function() {
+			console.log('POSTING');
 			var msg = $("#msg").val();
-			alert("Mock send: " + msg)
+			var speechRaw = meSpeak.speak(msg, {"rawdata": 'base64'});
+			console.log(speechRaw);
+			$.ajax({
+			  url: "/phone/send",
+			  dataType: 'json',
+			  method: 'post',
+			  data: { speech : speechRaw },
+			}).done(function() {
+			  	$("#msg").val("");
+			  	alert("Message sent");
+			});
 		});
 
 		$("#speakButton").on("click", "", function() {

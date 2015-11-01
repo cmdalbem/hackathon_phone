@@ -1,14 +1,17 @@
 var express = require('express'),
 	app = express(),
-//	router = express.Router(),
+	fs = require('fs'),
 	q = require('q'),
+	bodyparser = require('body-parser'),
 	repo = require('./public/repository.js'), 
 	phoneAudio = require('./audio/syscall.js'), 
 	phone = require('./public/phone.js');
 
-
 app.use(express.static('public'));
-
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 // app.js
 app.engine('html', require('ejs').renderFile);
@@ -32,7 +35,7 @@ app.get('/quotes',function(req, res) {
 });
 
 app.get('/phone/ring', function(req, res) {
-	phoneAudio.play('audio/bell.mp3');
+	phoneAudio.playFile('audio/bell.mp3');
 	console.log("call phone");
 	res.status(200).end();
 });
@@ -41,6 +44,23 @@ app.get('/phone/send/:id', function(req, res) {
 	phone.sendQuote(req.params.id);
 	console.log("phone send id:"+req.params.id);
 	res.status(200).end();
+});
+
+app.post('/phone/send', function(req, res) {
+	//var audioArray = new Buffer();
+	var readerStream = new fs.createReadStream(req.body.speech, {encoding: 'base64'});
+	var writeStream = new fs.createWriteStream("audio/speech.wav");
+
+	phone.writeHeader(writeStream);
+	writeStream.pipe(readerStream);
+
+    stream.on("end", function() {
+        console.log('stream ended');
+        	phoneAudio.playFile('audio/speech.wav');
+        
+    });
+
+	
 });
 
 
