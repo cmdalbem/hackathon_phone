@@ -47,7 +47,8 @@ if (serialPort) {
 							}
 							else {
 								quote = repo.getRandomQuote();
-							}							
+							}
+							console.log("QuoteId = "+quoteId);							
 							console.log(quote.text);
 							phoneAudio.playMp3('audio/'+quote.audioPath);
 						}
