@@ -42,13 +42,14 @@ if (serialPort) {
 						if (buffer=="P") {
 							console.log('PICKED UP');
 							var quote;
+							console.log("QuoteId = "+quoteId);		
 							if(quoteId >= 0) {
 								quote = repo.getQuote(quoteId);
 							}
 							else {
 								quote = repo.getRandomQuote();
 							}
-							console.log("QuoteId = "+quoteId);							
+												
 							console.log(quote.text);
 							phoneAudio.playMp3('audio/'+quote.audioPath);
 						}
@@ -77,7 +78,8 @@ module.exports = {
 		});	
 	},
 	ring : function(quote) {
-		console.log("writing RING to arduino");
+		console.log("writing RING to arduino : "+quote);
+
 		quoteId = quote;
 		serialPort.write(
 			new Buffer("RING",'ascii'),
