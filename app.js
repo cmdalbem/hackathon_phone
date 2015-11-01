@@ -1,17 +1,17 @@
 var express = require('express'),
 	app = express(),
-	fs = require('fs'),
-	q = require('q'),
-	bodyparser = require('body-parser'),
+
+	
+
 	repo = require('./public/repository.js'), 
 	phoneAudio = require('./audio/syscall.js'), 
 	phone = require('./public/phone.js');
 
 app.use(express.static('public'));
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
+
+
+
+ 
 
 // app.js
 app.engine('html', require('ejs').renderFile);
