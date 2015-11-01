@@ -11,9 +11,9 @@ var quoteId = -1;
 
 
 try {
-	serialPort = new SerialPort("/dev/ttyACM0", {
-		baudrate: 9600
-	});
+	// serialPort = new SerialPort("/dev/ttyACM0", {
+	// 	baudrate: 9600
+	// });
 } catch (e) {
 	console.error("Couldn't open SerialPort");
 }

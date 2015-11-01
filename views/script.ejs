@@ -1,3 +1,9 @@
+			  dataType: 'json',
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="http://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
+
 <script type="text/javascript">
 
 	$(function() {
@@ -7,30 +13,42 @@
 		// Initializations
 		///////////////
 
-		var meSpeakOpt = {
-			// "amplitude": 0, // How loud the voice will be (default: 100)
-			// "pitch": 0, //     The voice pitch (default: 50)
-			"speed": 140, //     The speed at which to talk (words per minute) (default: 175)
-			// "voice": 0, //     Which voice to use (default: last voice loaded or defaultVoice, see below)
-			"wordgap": 3, //   Additional gap between words in 10 ms units (default: 0)
-			// "variant": 0, //   One of the variants to be found in the eSpeak-directory "~/espeak-data/voices/!v"Variants add some effects to the normally plain voice, e.g. notably a female tone. Valid values are: "f1", "f2", "f3", "f4", "f5" for female voices "m1", "m2", "m3", "m4", "m5", "m6, "m7" for male voices "croak", "klatt", "klatt2", "klatt3", "whisper", "whisperf" for other effects. (Using eSpeak, these would be appended to the "-v" option by "+" and the value.) Note: Try "f2" or "f5" for a female voice.
-			"linebreak": 2, // (Number) Line-break length, default value: 0.
-			// "capitals": 0, //  (Number) Indicate words which begin with capital letters. 1: Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals. 2: Speak the word "capital" before a word which begins with a capital letter. Other values: Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)
-			// "punct": 0, //     (Boolean or String) Speaks the names of punctuation characters when they are encountered in the text. If a string of characters is supplied, then only those listed punctuation characters are spoken, eg. { "punct": ".,;?" }.
-			// "nostop": 0, //    (Boolean) Removes the end-of-sentence pause which normally occurs at the end of the text.
-			// "utf16": 0, //     (Boolean) Indicates that the input is UTF-16, default: UTF-8.
-			// "ssml": 0, //      (Boolean) Indicates that the text contains SSML (Speech Synthesis Markup Language) tags or other XML tags. (A small set of HTML is supported too.)
-		};
+		// var meSpeakOpt = {
+		// 	// "amplitude": 0, // How loud the voice will be (default: 100)
+		// 	// "pitch": 0, //     The voice pitch (default: 50)
+		// 	"speed": 140, //     The speed at which to talk (words per minute) (default: 175)
+		// 	// "voice": 0, //     Which voice to use (default: last voice loaded or defaultVoice, see below)
+		// 	"wordgap": 3, //   Additional gap between words in 10 ms units (default: 0)
+		// 	// "variant": 0, //   One of the variants to be found in the eSpeak-directory "~/espeak-data/voices/!v"Variants add some effects to the normally plain voice, e.g. notably a female tone. Valid values are: "f1", "f2", "f3", "f4", "f5" for female voices "m1", "m2", "m3", "m4", "m5", "m6, "m7" for male voices "croak", "klatt", "klatt2", "klatt3", "whisper", "whisperf" for other effects. (Using eSpeak, these would be appended to the "-v" option by "+" and the value.) Note: Try "f2" or "f5" for a female voice.
+		// 	"linebreak": 2, // (Number) Line-break length, default value: 0.
+		// 	// "capitals": 0, //  (Number) Indicate words which begin with capital letters. 1: Use a click sound to indicate when a word starts with a capital letter, or double click if word is all capitals. 2: Speak the word "capital" before a word which begins with a capital letter. Other values: Increases the pitch for words which begin with a capital letter. The greater the value, the greater the increase in pitch. (eg.: 20)
+		// 	// "punct": 0, //     (Boolean or String) Speaks the names of punctuation characters when they are encountered in the text. If a string of characters is supplied, then only those listed punctuation characters are spoken, eg. { "punct": ".,;?" }.
+		// 	// "nostop": 0, //    (Boolean) Removes the end-of-sentence pause which normally occurs at the end of the text.
+		// 	// "utf16": 0, //     (Boolean) Indicates that the input is UTF-16, default: UTF-8.
+		// 	// "ssml": 0, //      (Boolean) Indicates that the text contains SSML (Speech Synthesis Markup Language) tags or other XML tags. (A small set of HTML is supported too.)
+		// };
 
 		var carouselTemplate = Handlebars.compile($("#carouselTemplate").html());
 
-		// Init voice synthethiser
-		meSpeak.loadConfig("lib/mespeak/mespeak_config.json");
-		meSpeak.loadVoice('lib/mespeak/voices/en/en-us.json');  
+		// // Init voice synthethiser
+		// meSpeak.loadConfig("lib/mespeak/mespeak_config.json");
+		// meSpeak.loadVoice('lib/mespeak/voices/en/en-us.json');  
 
-		// Initialize carousel with quotes
-		$("#carousel").html( carouselTemplate({quotes: quotes}) );
- 		$($("#carousel .carousel-inner .item")[0]).addClass("active")
+		// // Initialize carousel with quotes
+		// var quotes;
+		// $.ajax({
+		// 	  url: "/quotes",
+		// 	  dataType: 'json'
+		// 	}).done(function(res) {
+		// 		console.log(res);
+		// 		quotes = res;
+		// 	});
+		var len = quotes.length;
+		for(var i=0; i<len; i++) {
+			quotes[i].index = (i%9) + 1;
+		}
+		$(".carousel").html( carouselTemplate({quotes: quotes}) );
+ 		// $($("#carousel .carousel-inner .item")[0]).addClass("active")
 
 		// Callbacks
 		///////////////
@@ -42,7 +60,6 @@
 			console.log(speechRaw);
 			$.ajax({
 			  url: "/phone/send",
-			  dataType: 'json',
 			  method: 'post',
 			  data: { speech : speechRaw },
 			}).done(function() {
@@ -51,13 +68,68 @@
 			});
 		});
 */
+
+		$('.carousel').slick();
+
+		$(".btn_zen").bind('click', zen_sending);
+
+
+		// FUNCTIONS ----------- //
+
+		function zen_sending()
+		{
+			$(".btn_zen").unbind('click', zen_sending); 
+
+			navigator.vibrate([500]);
+
+			$('.icon_arrow').addClass('sending');
+
+			$('.icon_arrow').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
+			function(e){
+				$('.icon_arrow').removeClass('sending');
+			});
+
+
+			$('.carousel').addClass('pulse');
+
+			$('.carousel').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
+				function(e){
+				$('.carousel').removeClass('pulse');
+				$(".btn_zen").bind('click', zen_sending); 
+			});
+
+			currentSlide = $('.carousel').slick('slickCurrentSlide');
+
+			return currentSlide;
+		}
+
+		function zen_receiving()
+		{ 
+			navigator.vibrate([500, 100, 500, 250, 500, 100, 500]);
+
+			$('.carousel').addClass('like');
+			
+			$('.carousel').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
+				function(e){
+				$('.carousel').removeClass('like');
+			});
+
+
+			$('.icon_heart').addClass('receiving');
+
+			$('.icon_heart').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
+				function(e){
+				$('.icon_heart').removeClass('receiving');
+			});
+		}
+
 		$("#sendButton").on("click", function(e) {
 			var target = $(e.target);
 			//busca propriedade para descobrir id do quote enviado
 			var id = 0;
 			console.log('POSTING');
 			$.ajax({
-			  url: "/phone/ring/"+id,
+			  url: "/phone/ring/"+zen_sending(),
 			  dataType: 'json'
 			}).done(function(res) {
 				// ...
@@ -84,10 +156,12 @@
 		});
 
 	})
-
-	$(document).ready(function() {
-
-		console.log("Document ready");
-
-	});
 </script> 
+
+<script type="text/javascript">
+ 	//	
+  var currentSlide = 0;
+
+  navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+</script>

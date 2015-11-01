@@ -1,119 +1,12 @@
 <!doctype html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Crazen Phone</title>
-
-
-    <!-- Page styles -->
-    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css"/>
-
-
-	<style>
-		html,
-		body {
-		  width: 100%;
-		  height: 100%;
-		  margin: 0;
-		  padding: 0;
-		  color:#FFF;
-		  background-color: #ff6600;
-		}
-
-		.btn_zen{
-		  position: absolute;
-		  top:450px;
-		  left:250px;
-		}
-
-		.logo_zen{
-		  position: absolute;
-		  top:20px;
-		  left:20px;
-		}
-
-		.icon_heart{
-		  position: absolute;
-		  top:250px;
-		  left:50%;
-		  margin-left:-35px;
-		  opacity:0;
-		  display:none;
-		}
-
-		.icon_arrow{
-		  position: absolute;
-		  top:250px;
-		  left:50%;
-		  margin-left:-40px;
-		  opacity:0;
-		  display:none;
-		}
-
-		@keyframes motion_receiving {
-		    0% {top: 250px;opacity:0}
-		    75% {top: 170px;opacity:1}
-		    100% {top: 200px;opacity:0}
-		}
-
-		@keyframes motion_sending{
-		    0% {top: 250px;opacity:0}
-		    75% {top: 120px;opacity:1}
-		    100% {top: 140px;opacity:0}
-		}
-
-		@keyframes motion_pulse {
-		    0% {opacity: 1;}
-		    50% {opacity: 0.05;}
-		    100% {opacity: 1;}
-		}
-
-		@keyframes motion_like {
-		    0% {opacity: 1;}
-		    15% {opacity: 0.05;}
-		    75% {opacity: 0.05;}
-		    100% {opacity: 1;}
-		}
-
-		.receiving{
-		  display:block;
-		  animation-name: motion_receiving;
-		  animation-duration: 4s;
-		}
-
-		.sending{
-		  display:block;
-		  animation-name: motion_sending;
-		  animation-duration: 1.5s;
-		}
-
-		.pulse{
-		  animation-name: motion_pulse;
-		  animation-duration: 2s;
-		}
-
-		.like{
-		  animation-name: motion_like;
-		  animation-duration: 5s;
-		}
-	</style>
-
-
-  </head>
+	<% include header %>
 
   <body> 
-    <div class="carousel" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "speed": 250, "arrows":false}'> 
-      <div class="carousel-card"><img src="images/card1.png"/></div>
-      <div class="carousel-card"><img src="images/card2.png"/></div>
-      <div class="carousel-card"><img src="images/card3.png"/></div>
-      <div class="carousel-card"><img src="images/card4.png"/></div>
-    </div>
+    <div class="carousel" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "speed": 250, "arrows":false}'> </div>
 
-    <div class='btn_zen'><img src="images/btn_zen.png" width="80" height="80"/></div>
+    <div id="sendButton" class='btn_zen'><img src="images/btn_zen.png" width="80" height="80"/></div>
 
     <div class='logo_zen'><img src="images/logo_zen.png"  width="50%" height="50%"/></div>
 
@@ -122,73 +15,21 @@
     <div class='icon_arrow'><img src="images/icon_arrow.png"  width="40%" height="40%"/></div>
 
 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="http://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>
-    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
+    <script id="carouselTemplate" type="text/x-handlebars-template">
+			{{#each quotes}}
+			<div class="carousel-card" style="background: url('images/bgs/0{{index}}.png')">
+	      	<p>
+	      		{{text}}
+	      		<span>{{author}}</span>
+	      	</p>
+	      </div>
+	    </div>
+	    {{/each}}
+		</script>
 
-    <script type="text/javascript">
-     	//	
-	    var currentSlide = 0;
-
-	    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-
-	    $(document).ready(function()
-	    {
-			$('.carousel').slick();
-
-			$(".btn_zen").bind('click', zen_sending);
-
-
-			// FUNCTIONS ----------- //
-
-			function zen_sending()
-			{
-				$(".btn_zen").unbind('click', zen_sending); 
-
-				navigator.vibrate([500]);
-
-				$('.icon_arrow').addClass('sending');
-
-				$('.icon_arrow').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
-				function(e){
-					$('.icon_arrow').removeClass('sending');
-				});
-
-
-				$('.carousel').addClass('pulse');
-
-				$('.carousel').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
-					function(e){
-					$('.carousel').removeClass('pulse');
-					$(".btn_zen").bind('click', zen_sending); 
-				});
-
-				currentSlide = $('.carousel').slick('slickCurrentSlide');
-			}
-
-			function zen_receiving()
-			{ 
-				navigator.vibrate([500, 100, 500, 250, 500, 100, 500]);
-
-				$('.carousel').addClass('like');
-				
-				$('.carousel').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
-					function(e){
-					$('.carousel').removeClass('like');
-				});
-
-
-				$('.icon_heart').addClass('receiving');
-
-				$('.icon_heart').on("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd",
-					function(e){
-					$('.icon_heart').removeClass('receiving');
-				});
-			}
-	    });
-
-    </script>
+		<% include footer %>
+		
+		<% include script %>
     
     <!-- Built with love using Web Starter Kit -->
   </body>
