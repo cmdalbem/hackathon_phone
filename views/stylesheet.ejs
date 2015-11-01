@@ -1,7 +1,94 @@
 <style>
 
-.item {
-	padding: 100px 150px;
-} 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color:#FFF;
+  background-color: #ff6600;
+}
+
+.btn_zen{
+  position: absolute;
+  top:450px;
+  left:250px;
+}
+
+.logo_zen{
+  position: absolute;
+  top:20px;
+  left:20px;
+}
+
+.slick-slide img {
+	width: 100% !important;
+}
+
+.icon_heart{
+  position: absolute;
+  top:250px;
+  left:50%;
+  margin-left:-35px;
+  opacity:0;
+  display:none;
+}
+
+.icon_arrow{
+  position: absolute;
+  top:250px;
+  left:50%;
+  margin-left:-40px;
+  opacity:0;
+  display:none;
+}
+
+@keyframes motion_receiving {
+    0% {top: 250px;opacity:0}
+    75% {top: 170px;opacity:1}
+    100% {top: 200px;opacity:0}
+}
+
+@keyframes motion_sending{
+    0% {top: 250px;opacity:0}
+    75% {top: 120px;opacity:1}
+    100% {top: 140px;opacity:0}
+}
+
+@keyframes motion_pulse {
+    0% {opacity: 1;}
+    50% {opacity: 0.05;}
+    100% {opacity: 1;}
+}
+
+@keyframes motion_like {
+    0% {opacity: 1;}
+    15% {opacity: 0.05;}
+    75% {opacity: 0.05;}
+    100% {opacity: 1;}
+}
+
+.receiving{
+  display:block;
+  animation-name: motion_receiving;
+  animation-duration: 4s;
+}
+
+.sending{
+  display:block;
+  animation-name: motion_sending;
+  animation-duration: 1.5s;
+}
+
+.pulse{
+  animation-name: motion_pulse;
+  animation-duration: 2s;
+}
+
+.like{
+  animation-name: motion_like;
+  animation-duration: 5s;
+}
 
 </style>
