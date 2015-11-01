@@ -34,7 +34,7 @@
 
 		// Callbacks
 		///////////////
-
+/*
 		$("#sendButton").on("click", function() {
 			console.log('POSTING');
 			var msg = $("#msg").val();
@@ -50,7 +50,20 @@
 			  	alert("Message sent");
 			});
 		});
+*/
+		$("#sendButton").on("click", function(e) {
+			var target = $(e.target);
+			//busca propriedade para descobrir id do quote enviado
+			var id = 0;
+			console.log('POSTING');
+			$.ajax({
+			  url: "/phone/ring/"+id,
+			  dataType: 'json'
+			}).done(function(res) {
 
+
+			});
+		});
 		$("#speakButton").on("click", "", function() {
 			var msg = $("#msg").val();
 			meSpeak.speak(msg, meSpeakOpt);

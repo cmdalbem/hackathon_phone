@@ -31,34 +31,23 @@ app.get('/quote/:id',function(req, res) {
 
 app.get('/quotes',function(req, res) {
 	var quotes = repo.getAll();
-	res.status(200).send(quotes);
+	res.status(200).send(quotes);                                    
 });
 
 app.get('/phone/ring', function(req, res) {
-	phoneAudio.playFile('audio/bell.mp3');
+	//phone.ring();
+	phoneAudio.playMp3('audio/bell.mp3');
 	console.log("call phone");
+
 	res.status(200).end();
 });
 
 app.get('/phone/send/:id', function(req, res) {
 	phone.sendQuote(req.params.id);
-	console.log("phone send id:"+req.params.id);
 	res.status(200).end();
 });
 
 app.post('/phone/send', function(req, res) {
-	//var audioArray = new Buffer();
-	var readerStream = new fs.createReadStream(req.body.speech, {encoding: 'base64'});
-	var writeStream = new fs.createWriteStream("audio/speech.wav");
-
-	phone.writeHeader(writeStream);
-	writeStream.pipe(readerStream);
-
-    stream.on("end", function() {
-        console.log('stream ended');
-        	phoneAudio.playFile('audio/speech.wav');
-        
-    });
 
 	
 });
