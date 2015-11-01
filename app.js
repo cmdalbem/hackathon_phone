@@ -1,8 +1,5 @@
 var express = require('express'),
 	app = express(),
-
-	
-
 	repo = require('./public/repository.js'), 
 	phoneAudio = require('./audio/syscall.js'), 
 	phone = require('./public/phone.js');
@@ -10,8 +7,6 @@ var express = require('express'),
 app.use(express.static('public'));
 
 
-
- 
 
 // app.js
 app.engine('html', require('ejs').renderFile);
@@ -46,9 +41,8 @@ app.get('/phone/ring', function(req, res) {
 app.get('/phone/ring/:id', function(req, res) {
 	//phone.ring();
 	// phoneAudio.playMp3('audio/bell.mp3');
-	var id = req.params.id;
-	console.log("call phone to play " +  id);
-	phone.ring();
+	console.log("call phone to play " +  req.params.id);
+	phone.ring(req.params.id);
 
 	res.status(200).end();
 });

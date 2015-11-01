@@ -7,9 +7,11 @@ var SerialPort = require("serialport").SerialPort;
 // var serialPort = new SerialPort("/dev/ttyACM0", {
 var serialPort;
 var buffer = "";
+var quoteId = -1;
+
 
 try {
-	serialPort = new SerialPort("/dev/cu.usbmodem1411", {
+	serialPort = new SerialPort("/dev/ttyACM0", {
 		baudrate: 9600
 	});
 } catch (e) {
@@ -39,7 +41,14 @@ if (serialPort) {
 					if (buffer && buffer.length>0) {
 						if (buffer=="P") {
 							console.log('PICKED UP');
-							var quote = repo.getRandomQuote();
+							var quote;
+							if(quoteId >= 0) {
+								quote = repo.getQuote(quoteId);
+							}
+							else {
+								quote = repo.getRandomQuote();
+							}
+							console.log("QuoteId = "+quoteId);							
 							console.log(quote.text);
 							phoneAudio.playMp3('audio/'+quote.audioPath);
 						}
@@ -67,7 +76,7 @@ module.exports = {
 			console.log('results ' + results);
 		});	
 	},
-	ring : function(data) {
+	ring : function(quote, data) {
 		console.log("writing RING to arduino");
 		serialPort.write(
 			new Buffer("RING",'ascii'),
