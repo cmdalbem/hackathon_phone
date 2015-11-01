@@ -76,7 +76,7 @@ module.exports = {
 			console.log('results ' + results);
 		});	
 	},
-	ring : function(quote, data) {
+	ring : function(quote) {
 		console.log("writing RING to arduino");
 		quoteId = quote;
 		serialPort.write(
