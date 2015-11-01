@@ -78,14 +78,16 @@
 
 		var currentSlide = 0;
 
-  	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+  		navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
 
 		function zen_sending()
 		{
 			$(".btn_zen").unbind('click', zen_sending); 
 
-			navigator.vibrate([500]);
+			if (navigator.vibrate) {
+				navigator.vibrate([500]);	
+			}
 
 			$('.icon_arrow').addClass('sending');
 
@@ -110,7 +112,9 @@
 
 		function zen_receiving()
 		{ 
-			navigator.vibrate([500, 100, 500, 250, 500, 100, 500]);
+			if(navigator.vibrate) {
+				navigator.vibrate([500, 100, 500, 250, 500, 100, 500]);	
+			}
 
 			$('.carousel').addClass('like');
 			
