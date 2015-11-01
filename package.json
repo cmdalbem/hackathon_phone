@@ -17,9 +17,9 @@
     "url": "https://github.com/cmdalbem/hackathon_phone/issues"
   },
   "dependencies": {
-    "body-parser": "^1.14.1",
     "ejs": "2.3.4",
     "express": "4.13.3",
+    "express-session": "^1.12.1",
     "fs": "0.0.2",
     "mespeak": "^2.0.0",
     "node-slack": "0.0.7",
