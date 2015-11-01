@@ -9,7 +9,7 @@ var serialPort;
 var buffer = "";
 
 try {
-	serialPort = new SerialPort("/dev/cu.usbmodem1411", {
+	serialPort = new SerialPort("/dev/ttyACM0", {
 		baudrate: 9600
 	});
 } catch (e) {
