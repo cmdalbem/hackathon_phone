@@ -27,10 +27,6 @@ if (serialPort) {
 
 			var size = data.length;
 
-			// var quote = repo.getRandomQuote();
-			// console.log(quote.text)
-			// phoneAudio.playMp3('audio/'+quote.audioPath);
-
 			for(var i=0; i<size; i++) {
 				var character = String.fromCharCode(data[i]);
 				if (character != ".") {
