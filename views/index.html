@@ -14,16 +14,18 @@
 
     <div class='icon_arrow'><img src="images/icon_arrow.png"  width="40%" height="40%"/></div>
 
-
     <script id="carouselTemplate" type="text/x-handlebars-template">
 			{{#each quotes}}
-			<div class="carousel-card" style="background: url('images/bgs/0{{index}}.png')">
-	      	<p>
-	      		{{text}}
-	      		<span>{{author}}</span>
-	      	</p>
-	      </div>
-	    </div>
+				<div class="carousel-card" style="display: table; background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('images/bgs/{{index}}.jpg');">
+					<div style="display: table-cell; vertical-align: middle;">
+		       <div>
+		         <p>
+			      		{{text}}
+			      		<span>{{author}}</span>
+			      	</p>
+		       </div>
+		     </div>	      	
+		    </div>	      	
 	    {{/each}}
 		</script>
 
