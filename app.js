@@ -42,18 +42,28 @@ app.get('/phone/ring', function(req, res) {
 	res.status(200).end();
 });
 
-app.get('/phone/send/:id', function(req, res) {
-	phone.sendQuote(req.params.id);
+app.get('/phone/play/:id', function(req, res) {
+	phone.playQuote(req.params.id);
+	console.log("phone play id:"+req.params.id);
 	res.status(200).end();
 });
 
-app.post('/phone/send', function(req, res) {
+// app.post('/phone/send', function(req, res) {
+// 	//var audioArray = new Buffer();
+// 	var readerStream = new fs.createReadStream(req.body.speech, {encoding: 'base64'});
+// 	var writeStream = new fs.createWriteStream("audio/speech.wav");
+
+// 	phone.writeHeader(writeStream);
+// 	writeStream.pipe(readerStream);
+
+//     stream.on("end", function() {
+//         console.log('stream ended');
+//         	phoneAudio.playFile('audio/speech.wav');
+        
+//     });
 
 	
-});
-
-
-
+// });
 
 
 var server = app.listen(3000, function () {
