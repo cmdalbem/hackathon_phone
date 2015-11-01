@@ -39,7 +39,8 @@ if (serialPort) {
 					if (buffer && buffer.length>0) {
 						if (buffer=="P") {
 							console.log('PICKED UP');
-							var quote = repo.getQuote(0);
+							var quote = repo.getRandomQuote();
+							console.log(quote.text);
 							phoneAudio.playMp3('audio/'+quote.audioPath);
 						}
 						else if (buffer=="I") {

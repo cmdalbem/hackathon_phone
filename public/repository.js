@@ -17,7 +17,8 @@ module.exports = {
 	},
 	getRandomQuote : function() {
 		var len = quotes.length;
-		return quotes[Math.floor((Math.random() * len-1))]
+		var rand = Math.floor((Math.random() * (len-1)));
+		return quotes[rand];
 	},
 	setQuote : function(quote) {
 		quotes.push(quote);

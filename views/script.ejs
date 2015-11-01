@@ -60,10 +60,19 @@
 			  url: "/phone/ring/"+id,
 			  dataType: 'json'
 			}).done(function(res) {
-
-
+				// ...
 			});
 		});
+
+		$("#sendRandom").on("click", function(e) {
+			$.ajax({
+			  url: "/phone/ring",
+			  dataType: 'json'
+			}).done(function(res) {
+				// ...
+			});
+		});
+
 		$("#speakButton").on("click", "", function() {
 			var msg = $("#msg").val();
 			meSpeak.speak(msg, meSpeakOpt);
