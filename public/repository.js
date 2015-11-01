@@ -1,6 +1,7 @@
 // Repositório de quotes
 
 var quotes = [
+	{text: "Ring A Random", author: "or chose one →"},
 	{audioPath: "therealvoyage.mp3", text: "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.", author: "Marcel Proust" },
 	{audioPath: "dontputoff.mp3", text: "Don't put off for tomorrow what you can do today because if you enjoy it today, you can do it again tomorrow.", author: "James A. Michene" },
 	{audioPath: "asforme.mp3", text: "As for me, I am tormented with an everlasting itch for things remote. I love to sail forbidden seas, and land on barbarous coasts.", author: "Herman Melville (Moby-Dick)" },

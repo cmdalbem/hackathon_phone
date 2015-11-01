@@ -45,7 +45,7 @@
 		// 	});
 		var len = quotes.length;
 		for(var i=0; i<len; i++) {
-			quotes[i].index = (i%9) + 1;
+			quotes[i].index = (i%18);
 		}
 		$(".carousel").html( carouselTemplate({quotes: quotes}) );
  		// $($("#carousel .carousel-inner .item")[0]).addClass("active")
@@ -75,6 +75,11 @@
 
 
 		// FUNCTIONS ----------- //
+
+		var currentSlide = 0;
+
+  	navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
 
 		function zen_sending()
 		{
@@ -128,12 +133,22 @@
 			//busca propriedade para descobrir id do quote enviado
 			var id = 0;
 			console.log('POSTING');
-			$.ajax({
-			  url: "/phone/ring/"+zen_sending(),
-			  dataType: 'json'
-			}).done(function(res) {
-				// ...
-			});
+			var which = zen_sending();
+			if(which==0) {
+				$.ajax({
+				  url: "/phone/ring",
+				  dataType: 'json'
+				}).done(function(res) {
+					// ...
+				});
+			} else {
+				$.ajax({
+				  url: "/phone/ring/"+which,
+				  dataType: 'json'
+				}).done(function(res) {
+					// ...
+				});
+			}
 		});
 
 		$("#sendRandom").on("click", function(e) {
@@ -157,11 +172,3 @@
 
 	})
 </script> 
-
-<script type="text/javascript">
- 	//	
-  var currentSlide = 0;
-
-  navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-
-</script>

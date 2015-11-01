@@ -24,6 +24,16 @@ body {
 
 #sendButton img {
 	opacity: 0.8;
+
+	transition: opacity 0.5s ease-out;
+}
+
+.carousel-card p.ringARandom {
+	font-size: 3em;
+}
+
+.carousel-card p.ringARandom span {
+	font-size: 0.5em;
 }
 
 #sendButton img:hover {
@@ -45,22 +55,22 @@ body {
 	padding: 30% 20%;
 	font-size: 1.2em;
 	font-family: 'Open Sans', sans-serif;
-	font-weight: bold;
+	font-weight: normal;
 }
 
-.carousel-card p:before {
+.carousel-card p.withBefore:before {
     content: "“";
     display: block;
     font-family: Georgia;
     margin-bottom: 1%;
     font-size: 4em;
-    font-weight: normal;
+    font-weight: bold;
     line-height: 10px;
     margin-left: -20px;
 }
 
 .carousel-card p span {
-	font-weight: normal;
+	font-weight: bold;
 	padding-top: 7%;
 	display: block;
 }
