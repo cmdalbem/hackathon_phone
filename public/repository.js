@@ -13,24 +13,22 @@ var quotes = [
 ]; 
 
 
-if(module) {
-	module.exports = {
-		getQuote : function(id) {
-			if(id != undefined && id <= quotes.length) {
-				return quotes[id];
-			}
-		},
-		getRandomQuote : function() {
-			var len = quotes.length;
-			var rand = Math.floor((Math.random() * (len-1)));
-			return quotes[rand];
-		},
-		setQuote : function(quote) {
-			quotes.push(quote);
-			return quotes.length; 
-		},
-		getAll : function()  {
-			return JSON.stringify(quotes);
+module.exports = {
+	getQuote : function(id) {
+		if(id != undefined && id <= quotes.length) {
+			return quotes[id];
 		}
-	};
-}
+	},
+	getRandomQuote : function() {
+		var len = quotes.length;
+		var rand = Math.floor((Math.random() * (len-1)));
+		return quotes[rand];
+	},
+	setQuote : function(quote) {
+		quotes.push(quote);
+		return quotes.length; 
+	},
+	getAll : function()  {
+		return JSON.stringify(quotes);
+	}
+};
